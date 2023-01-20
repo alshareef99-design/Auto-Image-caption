@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auto Image Caption</title>
+  <style>
+    /* Add some styling for the UI */
+    body {
+      background-color: #585757de;
+    }
+    #logo {
+      align-items: center;
+      width: 250px;
+    
+    }
+    #title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: rgb(11, 10, 10);
+    }
+    #image-upload-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+      background-color: rgb(117, 17, 17);
+      border-radius: 5px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    #image-file {
+      width: 300px;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid rgb(230, 223, 223);
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  
+    #image {
+      width: 150%;
+    }
+    #image-caption {
+      margin: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #333;
+    }
+    #loading {
+      display: none;
+      margin: 20px 0;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+    #image-preview {
+      width: 10px;
+      margin: 10px 0;
+      border: 0px solid rgb(117, 6, 21);
+    }
+    #image {
+      width: 100%;
+    }
+      #image-container {
+      width: 150px;
+      position: relative;
+      margin: 10px 10;
+      border: 10px solid rgb(117, 6, 21);
+      box-shadow: 10 20px 3px 0 rgba(10, 0, 0, 0.2), 10 10px 3px 0 rgba(0, 10, 0, 0.2);
+    }
+   
+  </style>
+</head>
+<body>
+  <img id="logo" src="C:\Users\ozexg\Desktop\usb\html dee[\LOGO.png" alt="Logo">
+  <div id="title">Auto Image Caption</div>
+  <form id="image-upload-form" method="post" enctype="multipart/form-data">
+    <input type="file" id="image-file" name="image" accept="image/*" multiple>
+    <input type="submit" value="Generate Caption">
+  </form>
+  <div id="image-container">
+    <img id="image">
+  </div>
+  <div id="caption-container">
+    <div id="image-caption"></div>
+    <div id="loading">Generating caption...</div>
+  </div>
+
+  <script>
+    // Get the file input element
+    const fileInput = document.getElementById("image-file");
+
+    // Add an event listener to the file input element
+    fileInput.addEventListener("change", () => {
+      // Get the selected file
+      const file = fileInput.files[0];
+
+      // Check if the file is an image
+      if (file.type.match(/image.*/)) {
+        // Create a new FileReader
+        const reader = new FileReader();
+
+        // Add an event listener to the FileReader's `onload` event
+        reader.addEventListener("load", () => {
+          // Update the image source with the read file data
+          document.getElementById("image").src = reader.result;
+        });
+
+        // Read the file as data URL
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+ <!-- Include the JavaScript file that will handle the image upload and caption generation -->
+  <script src="image-caption.js"></script>
+</body>
+</html>
